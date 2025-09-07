@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Exclusive Experience Awaits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+        }
+
+        /* PAGE 1 - BOLD & CLASSY */
+        #page1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 1.5s cubic-bezier(0.76, 0, 0.24, 1);
+            z-index: 2;
+        }
+
+        #page1.slide-out {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .entrance-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .luxury-frame {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transform: rotate(45deg);
+            animation: rotateFrame 20s linear infinite;
+            pointer-events: none;
+            left: 50%;
+            top: 50%;
+            margin-left: -250px;
+            margin-top: -250px;
+        }
+
+        @keyframes rotateFrame {
+            from { transform: rotate(45deg); }
+            to { transform: rotate(405deg); }
+        }
+
+        .luxury-frame::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .golden-particles {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #D4AF37;
+            border-radius: 50%;
+            animation: floatParticles 10s linear infinite;
+        }
+
+        @keyframes floatParticles {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .elegant-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.5em;
+            color: #D4AF37;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInTitle 2s ease forwards;
+        }
+
+        @keyframes fadeInTitle {
+            to {
+                opacity: 0.7;
+            }
+        }
+
+        .exclusive-btn {
+            position: relative;
+            padding: 22px 60px;
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            background: transparent;
+            color: #fff;
+            border: 1px solid #D4AF37;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInBtn 2s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInBtn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .exclusive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+            transition: left 0.7s;
+        }
+
+        .exclusive-btn:hover::before {
+            left: 100%;
+        }
+
+        .exclusive-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #D4AF37;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .exclusive-btn:hover {
+            color: #0a0a0a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .exclusive-btn:hover::after {
+            transform: scaleX(1);
+        }
+
+        .corner-accent {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .corner-accent.top-left {
+            top: 30px;
+            left: 30px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-accent.top-right {
+            top: 30px;
+            right: 30px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-accent.bottom-left {
+            bottom: 30px;
+            left: 30px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-accent.bottom-right {
+            bottom: 30px;
+            right: 30px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* PAGE 2 - FASHIONABLE BIRTHDAY */
+        #page2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1s ease;
+        }
+
+        #page2.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .fashion-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                ),
+                radial-gradient(ellipse at center, #1a0033, #000000);
+            animation: bgShift 10s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(1deg); }
+        }
+
+        .neon-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .birthday-neon {
+            font-size: clamp(2rem, 6vw, 5rem);
+            font-weight: 100;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ff00ff,
+                0 0 20px #ff00ff,
+                0 0 30px #ff00ff,
+                0 0 40px #ff00ff,
+                0 0 70px #ff00ff,
+                0 0 80px #ff00ff;
+            opacity: 0;
+            transform: scale(0.5) rotateX(90deg);
+            animation: neonReveal 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        .birthday-neon:nth-child(1) { animation-delay: 0.5s; }
+        .birthday-neon:nth-child(2) { animation-delay: 1s; }
+        .birthday-neon:nth-child(3) { animation-delay: 1.5s; }
+        .birthday-neon:nth-child(4) { animation-delay: 2s; }
+
+        @keyframes neonReveal {
+            to {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+            }
+        }
+
+        .glitch-text {
+            position: relative;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: 0.05em;
+            animation: glitchMain 2s infinite;
+            margin: 50px 0;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-text::before {
+            animation: glitch1 0.5s infinite;
+            color: #00ffff;
+            z-index: -1;
+        }
+
+        .glitch-text::after {
+            animation: glitch2 0.5s infinite;
+            color: #ff00ff;
+            z-index: -2;
+        }
+
+        @keyframes glitchMain {
+            0%, 94% { text-shadow: 0 0 10px #fff; }
+            95%, 96% { text-shadow: 0 0 10px #f0f; }
+            97%, 98% { text-shadow: 0 0 10px #0ff; }
+            99%, 100% { text-shadow: 0 0 10px #fff; }
+        }
+
+        @keyframes glitch1 {
+            0%, 100% { clip-path: inset(0 0 100% 0); transform: translate(0); }
+            20% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(80% 0 0 0); transform: translate(-1px, 1px); }
+            80% { clip-path: inset(0 0 70% 0); transform: translate(1px, -1px); }
+        }
+
+        @keyframes glitch2 {
+            0%, 100% { clip-path: inset(100% 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(0 0 80% 0); transform: translate(1px, -1px); }
+            80% { clip-path: inset(30% 0 50% 0); transform: translate(-1px, 1px); }
+        }
+
+        .laser-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
+            animation: laserScan 3s linear infinite;
+        }
+
+        .laser-line.horizontal {
+            width: 100%;
+            left: 0;
+        }
+
+        .laser-line.vertical {
+            width: 1px;
+            height: 100%;
+            top: 0;
+            background: linear-gradient(180deg, transparent, #ff00ff, #00ffff, transparent);
+        }
+
+        @keyframes laserScan {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .holo-shape {
+            position: absolute;
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1;
+            animation: holoPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes holoPulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.2) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        .fashion-diamond {
+            width: 300px;
+            height: 300px;
+            transform: rotate(45deg);
+            top: 10%;
+            left: 10%;
+        }
+
+        .fashion-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .cyber-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 10s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .prism-effect {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: conic-gradient(from 45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.5;
+            animation: prismFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes prismFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, -100px) scale(1.2); }
+            50% { transform: translate(-100px, -200px) scale(0.8); }
+            75% { transform: translate(-150px, 100px) scale(1.1); }
+        }
+
+        .chrome-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #fff, #aaa, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: chromeShine 3s linear infinite;
+        }
+
+        @keyframes chromeShine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: BOLD & CLASSY -->
+    <div id="page1">
+        <div class="corner-accent top-left"></div>
+        <div class="corner-accent top-right"></div>
+        <div class="corner-accent bottom-left"></div>
+        <div class="corner-accent bottom-right"></div>
+        
+        <div class="luxury-frame"></div>
+        
+        <div class="entrance-container">
+            <p class="elegant-title">An Exclusive Experience</p>
+            <button class="exclusive-btn" onclick="revealSurprise()">Enter</button>
+        </div>
+    </div>
+
+    <!-- PAGE 2: FASHIONABLE BIRTHDAY -->
+    <div id="page2">
+        <div class="fashion-bg"></div>
+        <div class="cyber-grid"></div>
+        
+        <div class="prism-effect" style="top: 20%; left: 20%;"></div>
+        <div class="prism-effect" style="bottom: 20%; right: 20%; animation-delay: 4s;"></div>
+        
+        <div class="holo-shape fashion-diamond"></div>
+        <div class="holo-shape fashion-circle"></div>
+        
+        <div class="laser-line horizontal" style="top: 20%;"></div>
+        <div class="laser-line horizontal" style="top: 80%; animation-delay: 1.5s;"></div>
+        <div class="laser-line vertical" style="left: 10%; animation-delay: 0.5s;"></div>
+        <div class="laser-line vertical" style="right: 10%; animation-delay: 2s;"></div>
+        
+        <div class="neon-container">
+            <div class="birthday-neon">✦ Happy ✦</div>
+            <div class="glitch-text" data-text="BIRTHDAY">BIRTHDAY</div>
+            <div class="birthday-neon">✦ To ✦</div>
+            <div class="birthday-neon">✦ You ✦</div>
+        </div>
+        
+        <div class="chrome-text">Celebrate in Style</div>
+    </div>
+
+    <script>
+        // Create golden particles for page 1
+        function createGoldenParticles() {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'golden-particles';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                document.getElementById('page1').appendChild(particle);
+            }
+        }
+
+        // Reveal surprise function
+        function revealSurprise() {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            
+            // Add slide out animation to page 1
+            page1.classList.add('slide-out');
+            
+            // Show page 2 after a delay
+            setTimeout(() => {
+                page2.classList.add('active');
+                createFashionEffects();
+            }, 500);
+            
+            // Remove page 1 from DOM after animation
+            setTimeout(() => {
+                page1.style.display = 'none';
+            }, 1500);
+        }
+
+        // Create additional fashion effects for page 2
+        function createFashionEffects() {
+            // Create floating holographic particles
+            setInterval(() => {
+                const colors = ['#ff00ff', '#00ffff', '#ffff00'];
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '100%';
+                particle.style.boxShadow = `0 0 10px ${particle.style.background}`;
+                particle.style.animation = 'floatUp 4s linear forwards';
+                document.getElementById('page2').appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 4000);
+            }, 200);
+        }
+
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize golden particles on page load
+        window.addEventListener('load', () => {
+            createGoldenParticles();
+        });
+
+        // Add hover sound effect simulation (visual feedback)
+        document.querySelector('.exclusive-btn').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+
+        document.querySelector('.exclusive-btn').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>
