@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>An Exclusive Experience Awaits</title>
+    <title>An Exclusive Birthday Experience</title>
     <style>
         * {
             margin: 0;
@@ -16,6 +16,7 @@
             overflow: hidden;
             position: relative;
             height: 100vh;
+            background: #000;
         }
 
         /* PAGE 1 - BOLD & CLASSY */
@@ -39,6 +40,7 @@
         .entrance-container {
             text-align: center;
             position: relative;
+            z-index: 10;
         }
 
         .luxury-frame {
@@ -98,7 +100,7 @@
             letter-spacing: 0.5em;
             color: #D4AF37;
             text-transform: uppercase;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             opacity: 0;
             animation: fadeInTitle 2s ease forwards;
         }
@@ -106,6 +108,44 @@
         @keyframes fadeInTitle {
             to {
                 opacity: 0.7;
+            }
+        }
+
+        .name-input-container {
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInInput 2s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .name-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #D4AF37;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 10px;
+            text-align: center;
+            width: 300px;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-bottom-color: #fff;
+            box-shadow: 0 2px 0 0 #D4AF37;
+        }
+
+        .name-input::placeholder {
+            color: rgba(212, 175, 55, 0.5);
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+        }
+
+        @keyframes fadeInInput {
+            to {
+                opacity: 1;
             }
         }
 
@@ -169,6 +209,11 @@
             transform: scaleX(1);
         }
 
+        .exclusive-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
         .corner-accent {
             position: absolute;
             width: 100px;
@@ -204,7 +249,7 @@
             border-top: none;
         }
 
-        /* PAGE 2 - FASHIONABLE BIRTHDAY */
+        /* PAGE 2 - ULTRA FASHIONABLE BIRTHDAY */
         #page2 {
             position: absolute;
             width: 100%;
@@ -226,20 +271,16 @@
             width: 100%;
             height: 100%;
             background: 
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255, 255, 255, 0.03) 2px,
-                    rgba(255, 255, 255, 0.03) 4px
-                ),
-                radial-gradient(ellipse at center, #1a0033, #000000);
-            animation: bgShift 10s ease infinite;
+                radial-gradient(circle at 20% 50%, rgba(120, 0, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 0, 120, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
+                linear-gradient(180deg, #0a0012 0%, #1a0033 50%, #0a0012 100%);
+            animation: bgPulse 4s ease-in-out infinite;
         }
 
-        @keyframes bgShift {
+        @keyframes bgPulse {
             0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(1deg); }
+            50% { transform: scale(1.05) rotate(0.5deg); }
         }
 
         .neon-container {
@@ -252,27 +293,23 @@
         }
 
         .birthday-neon {
-            font-size: clamp(2rem, 6vw, 5rem);
+            font-size: clamp(1.5rem, 4vw, 3rem);
             font-weight: 100;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: #fff;
+            margin: 20px 0;
             text-shadow: 
                 0 0 10px #ff00ff,
                 0 0 20px #ff00ff,
                 0 0 30px #ff00ff,
-                0 0 40px #ff00ff,
-                0 0 70px #ff00ff,
-                0 0 80px #ff00ff;
+                0 0 40px #ff00ff;
             opacity: 0;
             transform: scale(0.5) rotateX(90deg);
-            animation: neonReveal 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            animation: neonReveal 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
         }
 
-        .birthday-neon:nth-child(1) { animation-delay: 0.5s; }
-        .birthday-neon:nth-child(2) { animation-delay: 1s; }
-        .birthday-neon:nth-child(3) { animation-delay: 1.5s; }
-        .birthday-neon:nth-child(4) { animation-delay: 2s; }
+        .birthday-neon:nth-child(1) { animation-delay: 0.3s; }
 
         @keyframes neonReveal {
             to {
@@ -281,173 +318,276 @@
             }
         }
 
-        .glitch-text {
+        .user-name {
             position: relative;
-            font-size: clamp(4rem, 10vw, 8rem);
+            font-size: clamp(3rem, 12vw, 10rem);
             font-weight: 900;
             text-transform: uppercase;
-            color: #fff;
-            letter-spacing: 0.05em;
-            animation: glitchMain 2s infinite;
-            margin: 50px 0;
+            margin: 40px 0;
+            letter-spacing: 0.1em;
+            background: linear-gradient(
+                45deg,
+                #ff00ff 0%,
+                #00ffff 25%,
+                #ffff00 50%,
+                #ff00ff 75%,
+                #00ffff 100%
+            );
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: 
+                nameGradient 3s ease infinite,
+                namePulse 2s ease-in-out infinite,
+                nameReveal 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            animation-delay: 1s;
+            opacity: 0;
+            transform: scale(0) rotate(-10deg);
+            filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.5));
         }
 
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        @keyframes nameGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .glitch-text::before {
-            animation: glitch1 0.5s infinite;
-            color: #00ffff;
-            z-index: -1;
+        @keyframes namePulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(1deg); }
         }
 
-        .glitch-text::after {
-            animation: glitch2 0.5s infinite;
-            color: #ff00ff;
-            z-index: -2;
-        }
-
-        @keyframes glitchMain {
-            0%, 94% { text-shadow: 0 0 10px #fff; }
-            95%, 96% { text-shadow: 0 0 10px #f0f; }
-            97%, 98% { text-shadow: 0 0 10px #0ff; }
-            99%, 100% { text-shadow: 0 0 10px #fff; }
-        }
-
-        @keyframes glitch1 {
-            0%, 100% { clip-path: inset(0 0 100% 0); transform: translate(0); }
-            20% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); }
-            40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
-            60% { clip-path: inset(80% 0 0 0); transform: translate(-1px, 1px); }
-            80% { clip-path: inset(0 0 70% 0); transform: translate(1px, -1px); }
-        }
-
-        @keyframes glitch2 {
-            0%, 100% { clip-path: inset(100% 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
-            40% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
-            60% { clip-path: inset(0 0 80% 0); transform: translate(1px, -1px); }
-            80% { clip-path: inset(30% 0 50% 0); transform: translate(-1px, 1px); }
-        }
-
-        .laser-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
-            animation: laserScan 3s linear infinite;
-        }
-
-        .laser-line.horizontal {
-            width: 100%;
-            left: 0;
-        }
-
-        .laser-line.vertical {
-            width: 1px;
-            height: 100%;
-            top: 0;
-            background: linear-gradient(180deg, transparent, #ff00ff, #00ffff, transparent);
-        }
-
-        @keyframes laserScan {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
-        }
-
-        .holo-shape {
-            position: absolute;
-            border: 2px solid;
-            border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1;
-            animation: holoPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes holoPulse {
-            0%, 100% { 
+        @keyframes nameReveal {
+            to {
+                opacity: 1;
                 transform: scale(1) rotate(0deg);
-                opacity: 0.3;
-            }
-            50% { 
-                transform: scale(1.2) rotate(180deg);
-                opacity: 0.8;
             }
         }
 
-        .fashion-diamond {
-            width: 300px;
-            height: 300px;
-            transform: rotate(45deg);
-            top: 10%;
-            left: 10%;
-        }
-
-        .fashion-circle {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            bottom: 10%;
-            right: 10%;
+        .birthday-subtitle {
+            font-size: clamp(1rem, 3vw, 2rem);
+            color: #fff;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease forwards;
             animation-delay: 2s;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
-        .cyber-grid {
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Firework Effect */
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: fireworkLaunch 1s ease-out forwards;
+        }
+
+        @keyframes fireworkLaunch {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .firework-explosion {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle Trail */
+        .sparkle-trail {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                #ff00ff, 
+                #00ffff, 
+                #ffff00, 
+                transparent
+            );
+            animation: sparkleMove 2s linear infinite;
+        }
+
+        @keyframes sparkleMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Floating Orbs */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+            filter: blur(2px);
+            animation: orbFloat 10s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(100px, -100px) scale(1.2);
+            }
+            50% {
+                transform: translate(-50px, -200px) scale(0.8);
+            }
+            75% {
+                transform: translate(-100px, 50px) scale(1.1);
+            }
+        }
+
+        /* Laser Grid */
+        .laser-grid {
             position: absolute;
             width: 100%;
             height: 100%;
             background-image: 
                 linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 10s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .prism-effect {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: conic-gradient(from 45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-            border-radius: 50%;
-            filter: blur(50px);
+            background-size: 30px 30px;
+            animation: gridPerspective 10s ease-in-out infinite;
+            transform: perspective(500px) rotateX(60deg);
             opacity: 0.5;
-            animation: prismFloat 8s ease-in-out infinite;
         }
 
-        @keyframes prismFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(100px, -100px) scale(1.2); }
-            50% { transform: translate(-100px, -200px) scale(0.8); }
-            75% { transform: translate(-150px, 100px) scale(1.1); }
+        @keyframes gridPerspective {
+            0%, 100% { transform: perspective(500px) rotateX(60deg) translateZ(0); }
+            50% { transform: perspective(500px) rotateX(60deg) translateZ(50px); }
         }
 
-        .chrome-text {
+        /* Celebration Text */
+        .celebration-text {
             position: absolute;
-            bottom: 10%;
+            bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.2rem;
-            letter-spacing: 0.5em;
+            font-size: 1rem;
+            letter-spacing: 0.8em;
             text-transform: uppercase;
-            background: linear-gradient(45deg, #fff, #aaa, #fff, #aaa);
+            color: transparent;
+            background: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
             -webkit-background-clip: text;
             background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: chromeShine 3s linear infinite;
+            animation: celebrationShine 3s linear infinite;
+            opacity: 0;
+            animation-delay: 2.5s;
         }
 
-        @keyframes chromeShine {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+        @keyframes celebrationShine {
+            0% { 
+                background-position: -200% 50%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                background-position: 200% 50%;
+                opacity: 0;
+            }
+        }
+
+        /* Particle System */
+        .particle-system {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .energy-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 10px currentColor,
+                0 0 20px currentColor;
+            animation: energyFlow 4s linear infinite;
+        }
+
+        @keyframes energyFlow {
+            0% {
+                transform: translate(0, 100vh) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--endX), -100vh) scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Holographic Badge */
+        .holo-badge {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background: conic-gradient(
+                from 0deg,
+                #ff00ff,
+                #00ffff,
+                #ffff00,
+                #ff00ff
+            );
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: holoBadgeRotate 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes holoBadgeRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
         }
     </style>
 </head>
@@ -462,38 +602,51 @@
         <div class="luxury-frame"></div>
         
         <div class="entrance-container">
-            <p class="elegant-title">An Exclusive Experience</p>
-            <button class="exclusive-btn" onclick="revealSurprise()">Enter</button>
+            <p class="elegant-title">An Exclusive Birthday Experience</p>
+            <div class="name-input-container">
+                <input type="text" class="name-input" id="userName" placeholder="Enter Your Name" maxlength="20">
+            </div>
+            <button class="exclusive-btn" id="enterBtn" onclick="revealSurprise()" disabled>Enter</button>
         </div>
     </div>
 
-    <!-- PAGE 2: FASHIONABLE BIRTHDAY -->
+    <!-- PAGE 2: ULTRA FASHIONABLE BIRTHDAY -->
     <div id="page2">
         <div class="fashion-bg"></div>
-        <div class="cyber-grid"></div>
+        <div class="laser-grid"></div>
+        <div class="particle-system" id="particleSystem"></div>
         
-        <div class="prism-effect" style="top: 20%; left: 20%;"></div>
-        <div class="prism-effect" style="bottom: 20%; right: 20%; animation-delay: 4s;"></div>
+        <div class="holo-badge"></div>
         
-        <div class="holo-shape fashion-diamond"></div>
-        <div class="holo-shape fashion-circle"></div>
-        
-        <div class="laser-line horizontal" style="top: 20%;"></div>
-        <div class="laser-line horizontal" style="top: 80%; animation-delay: 1.5s;"></div>
-        <div class="laser-line vertical" style="left: 10%; animation-delay: 0.5s;"></div>
-        <div class="laser-line vertical" style="right: 10%; animation-delay: 2s;"></div>
+        <div class="sparkle-trail" style="top: 20%;"></div>
+        <div class="sparkle-trail" style="top: 40%; animation-delay: 0.5s;"></div>
+        <div class="sparkle-trail" style="top: 60%; animation-delay: 1s;"></div>
+        <div class="sparkle-trail" style="top: 80%; animation-delay: 1.5s;"></div>
         
         <div class="neon-container">
-            <div class="birthday-neon">✦ Happy ✦</div>
-            <div class="glitch-text" data-text="BIRTHDAY">BIRTHDAY</div>
-            <div class="birthday-neon">✦ To ✦</div>
-            <div class="birthday-neon">✦ You ✦</div>
+            <div class="birthday-neon">✦ Happy Birthday ✦</div>
+            <div class="user-name" id="displayName">NAME</div>
+            <div class="birthday-subtitle">May All Your Dreams Come True</div>
         </div>
         
-        <div class="chrome-text">Celebrate in Style</div>
+        <div class="celebration-text">Celebrate Your Special Day</div>
     </div>
 
     <script>
+        // Input handling
+        const nameInput = document.getElementById('userName');
+        const enterBtn = document.getElementById('enterBtn');
+
+        nameInput.addEventListener('input', function() {
+            enterBtn.disabled = this.value.trim().length === 0;
+        });
+
+        nameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim().length > 0) {
+                revealSurprise();
+            }
+        });
+
         // Create golden particles for page 1
         function createGoldenParticles() {
             for (let i = 0; i < 20; i++) {
@@ -508,8 +661,14 @@
 
         // Reveal surprise function
         function revealSurprise() {
+            const userName = document.getElementById('userName').value.trim();
+            if (!userName) return;
+
             const page1 = document.getElementById('page1');
             const page2 = document.getElementById('page2');
+            
+            // Set the user's name
+            document.getElementById('displayName').textContent = userName.toUpperCase();
             
             // Add slide out animation to page 1
             page1.classList.add('slide-out');
@@ -517,7 +676,7 @@
             // Show page 2 after a delay
             setTimeout(() => {
                 page2.classList.add('active');
-                createFashionEffects();
+                initializeCelebration();
             }, 500);
             
             // Remove page 1 from DOM after animation
@@ -526,46 +685,152 @@
             }, 1500);
         }
 
-        // Create additional fashion effects for page 2
-        function createFashionEffects() {
-            // Create floating holographic particles
-            setInterval(() => {
-                const colors = ['#ff00ff', '#00ffff', '#ffff00'];
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = '4px';
-                particle.style.height = '4px';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = '100%';
-                particle.style.boxShadow = `0 0 10px ${particle.style.background}`;
-                particle.style.animation = 'floatUp 4s linear forwards';
-                document.getElementById('page2').appendChild(particle);
-                
-                setTimeout(() => particle.remove(), 4000);
-            }, 200);
+        // Initialize celebration effects
+        function initializeCelebration() {
+            createFloatingOrbs();
+            createEnergyParticles();
+            createFireworks();
+            createConfetti();
         }
 
-        // Add floating animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes floatUp {
-                to {
-                    transform: translateY(-100vh) rotate(360deg);
-                    opacity: 0;
-                }
+        // Create floating orbs
+        function createFloatingOrbs() {
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff00ff'];
+            for (let i = 0; i < 5; i++) {
+                const orb = document.createElement('div');
+                orb.className = 'floating-orb';
+                orb.style.width = orb.style.height = (30 + Math.random() * 70) + 'px';
+                orb.style.left = Math.random() * 100 + '%';
+                orb.style.top = Math.random() * 100 + '%';
+                orb.style.background = `radial-gradient(circle, ${colors[i % colors.length]}80, transparent)`;
+                orb.style.animationDelay = Math.random() * 10 + 's';
+                orb.style.animationDuration = (10 + Math.random() * 10) + 's';
+                document.getElementById('page2').appendChild(orb);
             }
-        `;
-        document.head.appendChild(style);
+        }
+
+        // Create energy particles
+        function createEnergyParticles() {
+            const particleSystem = document.getElementById('particleSystem');
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#fff'];
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'energy-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.setProperty('--endX', (Math.random() - 0.5) * 200 + 'px');
+                particleSystem.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 4000);
+            }, 100);
+        }
+
+        // Create fireworks
+        function createFireworks() {
+            setInterval(() => {
+                const x = Math.random() * window.innerWidth;
+                const y = window.innerHeight;
+                
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = x + 'px';
+                firework.style.top = y + 'px';
+                firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.getElementById('page2').appendChild(firework);
+                
+                setTimeout(() => {
+                    firework.remove();
+                    createFireworkExplosion(x, y - window.innerHeight / 2);
+                }, 1000);
+            }, 2000);
+        }
+
+        // Create firework explosion
+        function createFireworkExplosion(x, y) {
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0066', '#66ff00'];
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-explosion';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.boxShadow = `0 0 6px ${particle.style.background}`;
+                
+                const angle = (i / particleCount) * Math.PI * 2;
+                const velocity = 2 + Math.random() * 3;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                particle.style.animation = 'none';
+                document.getElementById('page2').appendChild(particle);
+                
+                let posX = x;
+                let posY = y;
+                let opacity = 1;
+                
+                const animateParticle = () => {
+                    posX += vx;
+                    posY += vy + 0.5; // gravity
+                    opacity -= 0.02;
+                    
+                    particle.style.left = posX + 'px';
+                    particle.style.top = posY + 'px';
+                    particle.style.opacity = opacity;
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animateParticle);
+                    } else {
+                        particle.remove();
+                    }
+                };
+                
+                requestAnimationFrame(animateParticle);
+            }
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0066', '#66ff00', '#D4AF37'];
+            
+            setTimeout(() => {
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti';
+                        confetti.style.left = Math.random() * 100 + '%';
+                        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                        confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+                        
+                        // Random shape
+                        if (Math.random() > 0.5) {
+                            confetti.style.borderRadius = '50%';
+                        } else {
+                            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                        }
+                        
+                        document.getElementById('page2').appendChild(confetti);
+                        
+                        setTimeout(() => confetti.remove(), 4000);
+                    }, i * 20);
+                }
+            }, 1500);
+        }
 
         // Initialize golden particles on page load
         window.addEventListener('load', () => {
             createGoldenParticles();
+            nameInput.focus();
         });
 
-        // Add hover sound effect simulation (visual feedback)
+        // Add hover effects
         document.querySelector('.exclusive-btn').addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
+            if (!this.disabled) {
+                this.style.transform = 'scale(1.05)';
+            }
         });
 
         document.querySelector('.exclusive-btn').addEventListener('mouseleave', function() {
